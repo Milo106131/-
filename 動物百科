@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>可愛動物百科全書</title>
+    <!-- 載入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 使用一個更圓潤友好的字體 */
+        @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+        :root {
+            font-family: 'Varela Round', sans-serif;
+        }
+        .cute-shadow {
+            box-shadow: 0 4px 6px -1px rgba(255, 100, 150, 0.2), 0 2px 4px -2px rgba(255, 100, 150, 0.1);
+        }
+        .category-tab.active {
+            @apply bg-pink-500 text-white shadow-lg transform scale-105;
+        }
+        .content-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(255, 150, 200, 0.5), 0 4px 6px -4px rgba(255, 150, 200, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-pink-50 min-h-screen p-4 sm:p-8">
+
+    <header class="text-center mb-8">
+        <h1 class="text-5xl font-extrabold text-pink-600 mb-2 cute-shadow p-4 bg-white rounded-3xl inline-block shadow-xl">
+            🐾 可愛動物百科全書 📖
+        </h1>
+        <p class="text-pink-400 text-xl mt-2">探索這個星球上最迷人又可愛的生物！</p>
+    </header>
+
+    <main class="max-w-7xl mx-auto">
+        <!-- 類別導航區 -->
+        <nav class="flex flex-wrap justify-center gap-3 mb-10 p-4 bg-white rounded-2xl shadow-lg">
+            <button class="category-tab bg-pink-200 text-pink-700 py-2 px-4 rounded-full font-bold transition duration-300 hover:bg-pink-300 active" data-category="mammals">
+                哺乳類 🐻
+            </button>
+            <button class="category-tab bg-green-200 text-green-700 py-2 px-4 rounded-full font-bold transition duration-300 hover:bg-green-300" data-category="birds">
+                鳥類 🦉
+            </button>
+            <button class="category-tab bg-yellow-200 text-yellow-700 py-2 px-4 rounded-full font-bold transition duration-300 hover:bg-yellow-300" data-category="reptiles">
+                爬蟲類 🐍
+            </button>
+            <button class="category-tab bg-blue-200 text-blue-700 py-2 px-4 rounded-full font-bold transition duration-300 hover:bg-blue-300" data-category="amphibians">
+                兩棲類 🐸
+            </button>
+            <button class="category-tab bg-purple-200 text-purple-700 py-2 px-4 rounded-full font-bold transition duration-300 hover:bg-purple-300" data-category="fish">
+                魚類 🐠
+            </button>
+            <button class="category-tab bg-red-200 text-red-700 py-2 px-4 rounded-full font-bold transition duration-300 hover:bg-red-300" data-category="insects">
+                昆蟲 🦋
+            </button>
+        </nav>
+
+        <!-- 內容顯示區 -->
+        <div id="content-display" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- 動物卡片會由 JavaScript 插入到這裡 -->
+        </div>
+    </main>
+
+    <footer class="text-center mt-10 text-pink-400">
+        <p>&copy; 2024 可愛動物百科 - 知識讓世界更可愛！</p>
+    </footer>
+
+    <script>
+        const categories = {
+            mammals: {
+                title: '哺乳類動物 🐻',
+                color: 'pink',
+                animals: [
+                    {
+                        name: '大貓熊 (Giant Panda)',
+                        image: 'https://placehold.co/400x250/F8D8D8/D946EF?text=可愛貓熊',
+                        summary: '大貓熊主要棲息在中國的山區，以竹子為食，每天花費大部分時間進食。牠們是和平的象徵，外表圓潤可愛，黑白相間的毛皮極具辨識度。',
+                        details: '體重約 70 至 120 公斤，壽命約 20 年。儘管屬於食肉目，但超過 99% 的食物是竹子。因為繁殖率低和棲息地喪失，野外數量仍需積極保育。'
+                    },
+                    {
+                        name: '非洲象 (African Elephant)',
+                        image: 'https://placehold.co/400x250/C8E6C9/10B981?text=溫和象群',
+                        summary: '非洲象是陸地上最大的動物，以其巨大的耳朵和長長的象牙聞名。牠們是高度社會化的動物，生活在母系社會的象群中。',
+                        details: '每天需要消耗大量的植被和水，對生態系統有重要影響。牠們的長鼻功能多樣，可用來呼吸、嗅聞、喝水和抓取物體。'
+                    },
+                ]
+            },
+            birds: {
+                title: '鳥類動物 🦉',
+                color: 'green',
+                animals: [
+                    {
+                        name: '藍色金剛鸚鵡 (Blue Macaw)',
+                        image: 'https://placehold.co/400x250/B2EBF2/06B6D4?text=鮮豔鸚鵡',
+                        summary: '金剛鸚鵡擁有鮮豔的羽毛和強壯的喙。藍色金剛鸚鵡尤其引人注目，是世界上體型最大的鸚鵡之一。',
+                        details: '牠們的壽命很長，有些能活到 50 歲以上。金剛鸚鵡非常聰明，能模仿人類語言並解決簡單問題。'
+                    },
+                ]
+            },
+            reptiles: {
+                title: '爬蟲類動物 🐍',
+                color: 'yellow',
+                animals: [
+                    {
+                        name: '變色龍 (Chameleon)',
+                        image: 'https://placehold.co/400x250/FFF9C4/F59E0B?text=變色大師',
+                        summary: '變色龍最著名的能力是改變皮膚顏色以適應環境或表達情緒。牠們有可以獨立轉動的眼睛和長而黏的舌頭來捕食。',
+                        details: '主要生活在樹上，其腳趾形成鉗狀，非常適合抓握樹枝。變色並非只為偽裝，也用於溫度調節和社交信號。'
+                    },
+                ]
+            },
+            amphibians: {
+                title: '兩棲類動物 🐸',
+                color: 'blue',
+                animals: [
+                    {
+                        name: '箭毒蛙 (Poison Dart Frog)',
+                        image: 'https://placehold.co/400x250/BBDEFB/3B82F6?text=熱帶毒蛙',
+                        summary: '箭毒蛙以其鮮豔的體色著稱，這是警告捕食者的信號，因為牠們的皮膚含有劇毒。主要分佈在中南美洲的熱帶雨林。',
+                        details: '這些蛙類通常體型嬌小，但毒性極強。牠們的毒素來自於所食的特定昆蟲，在人工飼養環境中餵食無毒食物後會逐漸失去毒性。'
+                    },
+                ]
+            },
+            fish: {
+                title: '魚類動物 🐠',
+                color: 'purple',
+                animals: [
+                    {
+                        name: '小丑魚 (Clownfish)',
+                        image: 'https://placehold.co/400x250/E1BEE7/9333EA?text=海葵朋友',
+                        summary: '小丑魚因電影《海底總動員》而廣受歡迎。牠們與海葵共生，海葵的觸手保護了小丑魚，而小丑魚則會清理海葵。',
+                        details: '所有小丑魚出生時都是雄性，當群體中最大的雌性死亡後，最大的雄性會變性成為雌性。牠們是熱帶珊瑚礁的標誌性物種。'
+                    },
+                ]
+            },
+            insects: {
+                title: '昆蟲 🦋',
+                color: 'red',
+                animals: [
+                    {
+                        name: '七星瓢蟲 (Ladybug)',
+                        image: 'https://placehold.co/400x250/FFCDD2/EF4444?text=幸運瓢蟲',
+                        summary: '七星瓢蟲被視為益蟲，因為牠們主要以蚜蟲為食，幫助農民保護作物。牠們有著紅色帶有七個黑色斑點的圓形外殼。',
+                        details: '在寒冷的月份，牠們會聚集在一起冬眠。瓢蟲的外殼（鞘翅）其實是保護其後翅的，只有在飛行時才會展開。'
+                    },
+                ]
+            },
+        };
+
+        const contentDisplay = document.getElementById('content-display');
+        const categoryTabs = document.querySelectorAll('.category-tab');
+
+        // 函數：生成單個動物卡片的 HTML
+        function createAnimalCard(animal, categoryColor) {
+            return `
+                <div class="content-card bg-white p-6 rounded-3xl shadow-xl border-t-8 border-${categoryColor}-500 transition duration-300">
+                    <img src="${animal.image}" alt="${animal.name}" class="w-full h-auto object-cover rounded-xl mb-4 cute-shadow" onerror="this.onerror=null;this.src='https://placehold.co/400x250/E5E7EB/4B5563?text=圖片載入失敗';" />
+                    <h2 class="text-3xl font-extrabold text-${categoryColor}-700 mb-2">${animal.name}</h2>
+                    <p class="text-gray-600 mb-4 italic">${animal.summary}</p>
+                    <div class="bg-${categoryColor}-50 p-4 rounded-xl border border-${categoryColor}-200">
+                        <h3 class="font-bold text-${categoryColor}-600 mb-2">詳細資訊</h3>
+                        <p class="text-gray-700 text-sm leading-relaxed">${animal.details}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // 函數：顯示選定類別的內容
+        function displayContent(categoryKey) {
+            contentDisplay.innerHTML = '';
+            const categoryData = categories[categoryKey];
+            const headerHtml = `
+                <div class="col-span-full mb-4">
+                    <h2 class="text-4xl font-extrabold text-gray-800 border-b-4 border-${categoryData.color}-400 pb-2">${categoryData.title}</h2>
+                </div>
+            `;
+            contentDisplay.innerHTML = headerHtml;
+
+            categoryData.animals.forEach(animal => {
+                contentDisplay.innerHTML += createAnimalCard(animal, categoryData.color);
+            });
+
+            // 更新活躍標籤樣式
+            categoryTabs.forEach(tab => tab.classList.remove('active'));
+            document.querySelector(`.category-tab[data-category="${categoryKey}"]`).classList.add('active');
+        }
+
+        // 處理類別標籤點擊事件
+        categoryTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const category = tab.getAttribute('data-category');
+                displayContent(category);
+            });
+        });
+
+        // 預設載入哺乳類
+        window.onload = () => {
+            displayContent('mammals');
+        };
+    </script>
+</body>
+</html>
